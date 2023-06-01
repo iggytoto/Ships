@@ -1,11 +1,10 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoginSceneUiScript : MonoBehaviour
+public class LoginSceneUiController : MonoBehaviour
 {
     [SerializeField] private TMP_InputField loginInput;
     [SerializeField] private TMP_InputField passwordInput;
