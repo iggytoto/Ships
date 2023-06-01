@@ -45,7 +45,10 @@
     <Analyzer Include="D:\development\unity\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\test.cs" />
+     <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayfabAuthService.cs" />
+     <Compile Include="Assets\Scripts\Scenes\Login\Ui\LoginSceneUiScript.cs" />
+     <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
      <Reference Include="UnityEngine">
      <HintPath>D:\development\unity\2022.3.0f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>
      </Reference>
@@ -625,6 +628,10 @@
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
       <Project>{1e6d5d45-333c-b8ba-690d-41526b40c121}</Project>
       <Name>UnityEngine.UI.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFab.Player.csproj">
+      <Project>{ae38767a-9ff0-7cc2-fb35-6bd796685214}</Project>
+      <Name>PlayFab.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
       <Project>{20889519-0cf3-9cb6-7bfb-df77623e3415}</Project>
