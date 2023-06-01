@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayfabAuthService.cs" />
      <Compile Include="Assets\Scripts\Scenes\Login\Ui\LoginSceneUiScript.cs" />
      <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
+     <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
      <Folder Include="Assets" />
      <None Include="Library\PackageCache\com.unity.settings-manager@2.0.1\package.json" />
      <None Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0\package.json" />
