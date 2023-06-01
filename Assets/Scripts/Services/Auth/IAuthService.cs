@@ -5,8 +5,10 @@ public interface IAuthService
     public AuthData GetAuthData();
 
     void RegisterNewUser(string login, string password, Action<String> onSuccessHandler,
-        Action<String> OnErrorHandler);
+        Action<string> onErrorHandler);
 
     void Login(string login, string password, Action<String> onSuccessHandler,
-        Action<String> OnErrorHandler);
+        Action<string> onErrorHandler);
+
+    void Logout();
 }

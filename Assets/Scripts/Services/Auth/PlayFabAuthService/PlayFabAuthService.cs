@@ -48,6 +48,12 @@ public class PlayFabAuthService : MonoBehaviour, IAuthService
             error => OnErrorInternal(onErrorHandler, error));
     }
 
+    public void Logout()
+    {
+        _entityId = null;
+        _entityToken = null;
+    }
+
     private static void OnErrorInternal(Action<string> onErrorHandler, PlayFabError error)
     {
         onErrorHandler?.Invoke(error.ErrorMessage);

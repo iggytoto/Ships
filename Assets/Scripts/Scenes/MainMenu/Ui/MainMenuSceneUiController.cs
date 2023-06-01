@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuSceneUiController : MonoBehaviour
@@ -8,6 +9,8 @@ public class MainMenuSceneUiController : MonoBehaviour
     [SerializeField] private Button cancelSearchDuelButton;
     [SerializeField] private Button logoutButton;
 
+    private IAuthService _authService;
+
     private void Start()
     {
         Assert.IsNotNull(searchDuelButton);
@@ -15,15 +18,18 @@ public class MainMenuSceneUiController : MonoBehaviour
         Assert.IsNotNull(logoutButton);
 
         cancelSearchDuelButton.gameObject.SetActive(false);
-        
+
         searchDuelButton.onClick.AddListener(OnSearchDuelClicked);
         cancelSearchDuelButton.onClick.AddListener(OnCancelSearchDuelClicked);
         logoutButton.onClick.AddListener(OnLogoutClicked);
+
+        _authService = FindObjectOfType<GameServiceController>().GetAuthService();
     }
 
     private void OnLogoutClicked()
     {
-        throw new System.NotImplementedException();
+        _authService.Logout();
+        SceneManager.LoadScene(SceneConstants.LoginSceneName);
     }
 
     private void OnCancelSearchDuelClicked()

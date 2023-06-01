@@ -10,6 +10,7 @@ public class LoginSceneUiController : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private Button registerButton;
     [SerializeField] private Button loginButton;
+    [SerializeField] private Button exitButton;
     [SerializeField] private TMP_Text messageText;
 
     private IAuthService _authService;
@@ -21,10 +22,17 @@ public class LoginSceneUiController : MonoBehaviour
         Assert.IsNotNull(registerButton);
         Assert.IsNotNull(loginButton);
         Assert.IsNotNull(messageText);
+        Assert.IsNotNull(exitButton);
 
         registerButton.onClick.AddListener(OnRegisterButtonClicked);
         loginButton.onClick.AddListener(OnLoginButtonClicked);
+        exitButton.onClick.AddListener(OnExitButtonClicked);
         _authService = FindObjectOfType<GameServiceController>().GetAuthService();
+    }
+
+    private static void OnExitButtonClicked()
+    {
+        Application.Quit(0);
     }
 
     private void OnRegisterButtonClicked()
