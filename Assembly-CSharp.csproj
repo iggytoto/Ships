@@ -47,6 +47,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayfabAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingResult.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingType.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingStatus.cs" />
      <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainMenu\Ui\MainMenuSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
@@ -123,6 +127,7 @@
      <Folder Include="Assets\Prefabs" />
      <None Include="Library\PackageCache\com.unity.test-framework@1.1.33\package.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0" />
+     <Folder Include="Assets\Scripts\Services\MatchMaking" />
      <Folder Include="Library\PackageCache\com.unity.modules.physics@1.0.0" />
      <Folder Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Scripts" />
      <Folder Include="Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime" />

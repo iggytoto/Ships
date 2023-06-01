@@ -47,6 +47,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayfabAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingResult.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingType.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingStatus.cs" />
      <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainMenu\Ui\MainMenuSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
