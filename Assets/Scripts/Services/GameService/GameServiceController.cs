@@ -1,19 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameServiceController : MonoBehaviour
 {
     private IAuthService _authService;
+    private IMatchMakingService _matchMakingService;
 
 
     private void Start()
     {
-        ConfigureGameService();
+        ConfigureGameServices();
     }
 
-    private void ConfigureGameService()
+    private void ConfigureGameServices()
     {
         _authService = gameObject.AddComponent<PlayFabAuthService>();
     }
@@ -21,5 +19,10 @@ public class GameServiceController : MonoBehaviour
     public IAuthService GetAuthService()
     {
         return _authService;
+    }
+
+    public IMatchMakingService GetMatchMakingService()
+    {
+        return _matchMakingService;
     }
 }
