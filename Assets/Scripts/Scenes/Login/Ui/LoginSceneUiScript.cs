@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoginSceneUiScript : MonoBehaviour
@@ -35,6 +36,7 @@ public class LoginSceneUiScript : MonoBehaviour
     private void OnLoginButtonClicked()
     {
         _authService.Login(loginInput.text, passwordInput.text, OnMessage, OnMessage);
+        SceneManager.LoadScene(SceneConstants.MainMenuSceneName);
     }
 
     private void OnMessage(string message)
