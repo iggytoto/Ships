@@ -14,6 +14,7 @@ public class GameServiceController : MonoBehaviour
     private void ConfigureGameServices()
     {
         _authService = gameObject.AddComponent<PlayFabAuthService>();
+        _matchMakingService = gameObject.AddComponent<PlayFabMatchMakingService>();
     }
 
     public IAuthService GetAuthService()

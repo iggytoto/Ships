@@ -45,8 +45,9 @@
     <Analyzer Include="D:\development\unity\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayFabAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
-     <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayfabAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingResult.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingType.cs" />
@@ -119,6 +120,7 @@
      <Folder Include="Library\PackageCache\com.unity.modules.unitywebrequestassetbundle@1.0.0" />
      <Folder Include="Assets\Scripts\Services\GameService" />
      <None Include="Library\PackageCache\com.unity.feature.development@1.0.1\package.json" />
+     <Folder Include="Assets\Scenes\Workspaces" />
      <Folder Include="Assets\TextMesh Pro" />
      <None Include="Library\PackageCache\com.unity.modules.unityanalytics@1.0.0\package.json" />
      <Folder Include="Library\PackageCache\com.unity.modules.subsystems@1.0.0" />
@@ -182,6 +184,7 @@
      <Folder Include="Library\PackageCache\com.unity.ide.rider@3.0.21" />
      <None Include="Library\PackageCache\com.unity.modules.unitywebrequestwww@1.0.0\package.json" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <Folder Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService" />
      <Folder Include="Assets\Scripts\Scenes\MainMenu\Ui" />
      <None Include="Library\PackageCache\com.unity.modules.unitywebrequestaudio@1.0.0\package.json" />
      <None Include="Library\PackageCache\com.unity.textmeshpro@3.0.6\Editor Resources\Shaders\TMP_SDF_SSD.cginc" />
