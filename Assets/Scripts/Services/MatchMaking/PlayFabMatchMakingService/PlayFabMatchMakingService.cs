@@ -18,7 +18,7 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
     {
         _authService = FindObjectOfType<GameServiceController>().GetAuthService();
     }
-
+    
     public void Register(MatchMakingType type, Action<MatchMakingResult> onSuccess, Action<string> onError)
     {
         if (_matchMakingTicketProcessing != null)
@@ -60,6 +60,9 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
             OnMatchMakingTicketError);
     }
 
+    /**
+     * Maps matchmaking type to playfab queue name.
+     */
     private static string GetQueueName(MatchMakingType type)
     {
         return type switch
@@ -72,9 +75,12 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
     private void OnMatchMakingTicketError(PlayFabError obj)
     {
         _currentMatchMakingErrorHandler?.Invoke(obj.ErrorMessage);
-        CancelRegistration(null,null);
     }
 
+    /**
+     * Matchmaking ticket created handler. Its very important to track request id. After we received confirmation
+     * of ticket is created we need to track it, we start coroutine and call handler with new information.
+     */
     private void OnMatchMakingTicketCreated(CreateMatchmakingTicketResult obj)
     {
         _currentMatchMakingRequestId = obj.TicketId;
@@ -88,6 +94,9 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
         _matchMakingTicketProcessing = StartCoroutine(PollMatchMakingTicket());
     }
 
+    /**
+     * Cancels given ticket if it exists.
+     */
     public void CancelRegistration(Action<MatchMakingResult> onSuccess, Action<string> onError)
     {
         if (_currentMatchMakingRequestId == null)
@@ -105,6 +114,9 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
             OnMatchMakingTicketError);
     }
 
+    /**
+     * Success cancellation handler. If called means playfab successfully canceled ticket, we can now clear state.  
+     */
     private void OnCancelMatchMakingSuccess(Action<MatchMakingResult> onSuccess, CancelMatchmakingTicketResult success)
     {
         var result = new MatchMakingResult
@@ -117,6 +129,10 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
         ClearMatchMakingData();
     }
 
+    /**
+     * Clearing the state of current request. Careful call this method because it wipes request id, if we lost it
+     * we need to wait for ticket timeout before it will be removed from playfab queue.
+     */
     private void ClearMatchMakingData()
     {
         StopCoroutine(_matchMakingTicketProcessing);
@@ -126,6 +142,9 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
         _currentMatchMakingResultHandler = null;
     }
 
+    /**
+     * Coroutine that checks status of the ticket each second until cancelled
+     */
     private IEnumerator PollMatchMakingTicket()
     {
         while (true)
@@ -149,6 +168,10 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
         ClearMatchMakingData();
     }
 
+    /**
+     * Playfab ticket status update handler. If match is found we stop poll coroutine and then checking the match
+     * data for a server address and port. If cancelled we wipe out request.
+     */
     private void OnSuccessPollMatchMakingTicket(GetMatchmakingTicketResult obj)
     {
         switch (obj.Status)
