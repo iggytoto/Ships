@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayFabAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\IBulletController.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\Projection.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
@@ -79,6 +80,7 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\Scripts\Services\GameService" />
      <Folder Include="Assets\Scenes\Workspaces" />
+     <Folder Include="Assets\Scenes\Workspaces" />
      <Folder Include="Assets\TextMesh Pro" />
      <Folder Include="Assets\Materials" />
      <Folder Include="Assets\Prefabs" />
@@ -104,6 +106,7 @@
      <Folder Include="Assets\TextMesh Pro\Fonts" />
      <Folder Include="Assets\Scripts\Scenes\Login\Ui" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <Folder Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService" />
      <Folder Include="Assets\Scripts\Scenes\MainMenu\Ui" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <Folder Include="Assets\Scripts\Services\Cannon" />
