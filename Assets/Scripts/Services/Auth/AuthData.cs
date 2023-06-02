@@ -6,6 +6,6 @@ public class AuthData
         Token = token;
     }
 
-    private string Token { get; }
-    private string Id { get; }
+    public string Token {  get; }
+    public string Id { get; }
 }

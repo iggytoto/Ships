@@ -1,11 +1,10 @@
 public class MatchMakingResult
 {
-    public MatchMakingResult(MatchMakingType type, MatchMakingStatus status)
-    {
-        Type = type;
-        Status = status;
-    }
 
-    private MatchMakingType Type { get; }
-    private MatchMakingStatus Status { get; }
+    public MatchMakingType Type { get;  set; }
+    public MatchMakingStatus Status { get;  set; }
+    public string RequestId { get;  set; }
+
+    public string ServerAddress { get; set; }
+    public string ServerPort { get; set; }
 }

@@ -47,12 +47,19 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayFabAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\Cannon\IBulletController.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabMatchMakingService.cs" />
+     <Compile Include="Assets\Scripts\Services\Cannon\Projection.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
+     <Compile Include="Assets\Scripts\Utils\FreeCam.cs" />
+     <Compile Include="Assets\Scripts\Services\Cannon\CannonController.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabQueueNames.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingResult.cs" />
+     <Compile Include="Assets\Scripts\Services\Cannon\BulletController.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingType.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingStatus.cs" />
      <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
+     <Compile Include="Assets\Scripts\Utils\AxisVisualizer.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainMenu\Ui\MainMenuSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
