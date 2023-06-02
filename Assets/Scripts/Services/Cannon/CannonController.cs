@@ -28,7 +28,7 @@ public class CannonController  : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //_projection.SimulateTrajectory(_bulletController, bulletSpawn.position, bulletSpawn.up * gunPower);
+        _projection.SimulateTrajectory(_bulletController, bulletSpawn.position, bulletSpawn.forward * gunPower);
         
         var horizontalAngel = 0f;
         if (Input.GetKeyDown(KeyCode.J))
