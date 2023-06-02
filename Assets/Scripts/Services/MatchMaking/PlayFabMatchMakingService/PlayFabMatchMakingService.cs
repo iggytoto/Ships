@@ -72,10 +72,12 @@ public class PlayFabMatchMakingService : MonoBehaviour, IMatchMakingService
     private void OnMatchMakingTicketError(PlayFabError obj)
     {
         _currentMatchMakingErrorHandler?.Invoke(obj.ErrorMessage);
+        CancelRegistration(null,null);
     }
 
     private void OnMatchMakingTicketCreated(CreateMatchmakingTicketResult obj)
     {
+        _currentMatchMakingRequestId = obj.TicketId;
         var result = new MatchMakingResult
         {
             Status = MatchMakingStatus.Searching,

@@ -1,4 +1,4 @@
 public abstract class PlayFabQueueNames
 {
-    public static string DevDuelQueueName = "DevDuelQueue";
+    public static readonly string DevDuelQueueName = "duel";
 }

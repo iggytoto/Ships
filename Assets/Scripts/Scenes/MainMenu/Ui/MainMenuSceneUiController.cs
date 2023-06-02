@@ -57,6 +57,7 @@ public class MainMenuSceneUiController : MonoBehaviour
     {
         searchDuelButton.gameObject.SetActive(true);
         cancelSearchDuelButton.gameObject.SetActive(false);
+        OnMatchMakingResultSuccess(obj);
     }
 
     private void OnError(string obj)

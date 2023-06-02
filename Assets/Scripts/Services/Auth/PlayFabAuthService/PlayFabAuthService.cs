@@ -7,10 +7,18 @@ public class PlayFabAuthService : MonoBehaviour, IAuthService
 {
     private static string _entityId;
     private static string _entityToken;
+    private static string _login;
 
     public AuthData GetAuthData()
     {
-        return _entityId == null ? null : new AuthData(_entityId, _entityToken);
+        return _entityId == null
+            ? null
+            : new AuthData
+            {
+                Id = _entityId,
+                Token = _entityToken,
+                Login = _login
+            };
     }
 
     public void RegisterNewUser(
@@ -44,7 +52,7 @@ public class PlayFabAuthService : MonoBehaviour, IAuthService
         };
         PlayFabClientAPI.LoginWithEmailAddress(
             request,
-            success => OnLoginSuccessInternal(onSuccessHandler, success),
+            success => OnLoginSuccessInternal(onSuccessHandler, success, login),
             error => OnErrorInternal(onErrorHandler, error));
     }
 
@@ -64,10 +72,11 @@ public class PlayFabAuthService : MonoBehaviour, IAuthService
         onSuccessHandler?.Invoke("Successfully registered user: " + success.Username);
     }
 
-    private static void OnLoginSuccessInternal(Action<string> onSuccessHandler, LoginResult success)
+    private static void OnLoginSuccessInternal(Action<string> onSuccessHandler, LoginResult success, string login)
     {
         _entityId = success.EntityToken.Entity.Id;
         _entityToken = success.EntityToken.EntityToken;
+        _login = login;
         onSuccessHandler?.Invoke("Login successful with id: " + _entityId);
     }
 }
