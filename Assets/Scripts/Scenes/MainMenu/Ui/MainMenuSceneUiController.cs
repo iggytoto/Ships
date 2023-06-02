@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -40,7 +41,7 @@ public class MainMenuSceneUiController : MonoBehaviour
 
     private void OnCancelSearchDuelClicked()
     {
-        _matchMakingService.CancelRegistration(MatchMakingType.Duel, OnCancelMatchMakingResultSuccess, OnError);
+        _matchMakingService.CancelRegistration(OnCancelMatchMakingResultSuccess, OnError);
         searchDuelButton.gameObject.SetActive(true);
         cancelSearchDuelButton.gameObject.SetActive(false);
     }
@@ -54,16 +55,36 @@ public class MainMenuSceneUiController : MonoBehaviour
 
     private void OnCancelMatchMakingResultSuccess(MatchMakingResult obj)
     {
-        throw new System.NotImplementedException();
+        searchDuelButton.gameObject.SetActive(true);
+        cancelSearchDuelButton.gameObject.SetActive(false);
     }
 
     private void OnError(string obj)
     {
-        throw new System.NotImplementedException();
+        messageText.text = obj;
     }
 
     private void OnMatchMakingResultSuccess(MatchMakingResult obj)
     {
-        throw new System.NotImplementedException();
+        switch (obj.Status)
+        {
+            case MatchMakingStatus.Searching:
+                messageText.text = "Searching";
+                break;
+            case MatchMakingStatus.MatchFound:
+                messageText.text = "Match found";
+                break;
+            case MatchMakingStatus.MatchReady:
+                messageText.text = "Match ready";
+                break;
+            case MatchMakingStatus.CancelledByUser:
+                messageText.text = "Cancelled";
+                break;
+            case MatchMakingStatus.CancelledByService:
+                messageText.text = "Cancelled by service";
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
