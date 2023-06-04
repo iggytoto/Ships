@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: a270e2e1289dfac48a9e7fc98e471229
+  - enabled: 1
+    path: Assets/Scenes/BattleScenes/DuelBattle.unity
+    guid: 9f844be64d63533489ff7db2ee33b812
   m_configObjects: {}

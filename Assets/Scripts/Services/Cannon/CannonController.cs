@@ -19,18 +19,12 @@ public class CannonController  : MonoBehaviour
 
     public Projection _projection;
     
-    
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         _projection.SimulateTrajectory(_bulletController, bulletSpawn.position, bulletSpawn.forward * gunPower);
         
-        var horizontalAngel = 0f;
         if (Input.GetKeyDown(KeyCode.J))
         {
             gunPower += 1f;
@@ -53,22 +47,11 @@ public class CannonController  : MonoBehaviour
 
             particleSystem.Play();
             bullet.Fire((bulletSpawn.forward) * gunPower, false);
-           
         }
     }
 
-    public Vector3 T()
+    private Vector3 T()
     {
-       // Debug.DrawRay(camera.position, camera.forward * 100f,Color.green,100f);
         return camera.forward * 100f;
-        // var aimDistance = 10.0f;
-        // RaycastHit rch = null;
-        // Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
-        //
-        // if ( Physics.Raycast( ray, rch, aimDistance ) ) {
-        //     return rch.point;
-        // } else {
-        //     return ray.origin + ray.direction * aimDistance;
-        // }
     }
 }
