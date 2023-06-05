@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class RpcTest : NetworkBehaviour
     [ClientRpc]
     void TestClientRpc(int value, ulong sourceNetworkObjectId)
     {
-        Debug.Log($"Client Received the RPC #{value} on NetworkObject #{sourceNetworkObjectId}");
+        DebugText($"Client Received the RPC #{value} on NetworkObject #{sourceNetworkObjectId}");
         if (IsOwner) //Only send an RPC to the server on the client that owns the NetworkObject that owns this NetworkBehaviour instance
         {
             TestServerRpc(value + 1, sourceNetworkObjectId);
@@ -26,7 +27,12 @@ public class RpcTest : NetworkBehaviour
     [ServerRpc]
     void TestServerRpc(int value, ulong sourceNetworkObjectId)
     {
-        Debug.Log($"Server Received the RPC #{value} on NetworkObject #{sourceNetworkObjectId}");
+        DebugText($"Server Received the RPC #{value} on NetworkObject #{sourceNetworkObjectId}");
         TestClientRpc(value, sourceNetworkObjectId);
+    }
+
+    private void DebugText(string text)
+    {
+        Debug.Log(text);
     }
 }
