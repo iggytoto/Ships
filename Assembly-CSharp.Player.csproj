@@ -48,11 +48,13 @@
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayFabAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\IBulletController.cs" />
+     <Compile Include="Assets\Scripts\Scenes\LobbyStartup\NetworkFixPrefabListController.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\Projection.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
-     <Compile Include="Assets\Scripts\Utils\FreeCam.cs" />
+     <Compile Include="Assets\Scripts\Utils\RpcTest.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\CannonController.cs" />
+     <Compile Include="Assets\Scripts\Utils\FreeCam.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabQueueNames.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingResult.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\BulletController.cs" />
@@ -60,10 +62,16 @@
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingStatus.cs" />
      <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
      <Compile Include="Assets\Scripts\Utils\AxisVisualizer.cs" />
+     <Compile Include="Assets\Scripts\Services\Character\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Utils\DataTypes\CircularBuffer.cs" />
+     <Compile Include="Assets\Scripts\Services\Network\Movement\TransformState.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainMenu\Ui\MainMenuSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
+     <Compile Include="Assets\Scripts\Services\Network\Movement\NetworkMovementComponent.cs" />
+     <Compile Include="Assets\Scripts\Services\Network\NetworkSimpleGui.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
      <Compile Include="Assets\Scripts\Scenes\Login\Ui\LoginSceneUiController.cs" />
+     <Compile Include="Assets\Scripts\Services\Network\Movement\InputState.cs" />
      <Reference Include="UnityEngine">
      <HintPath>D:\development\unity\2022.3.0f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>
      </Reference>
@@ -264,6 +272,9 @@
      </Reference>
      <Reference Include="UnityEngine.XRModule">
      <HintPath>D:\development\unity\2022.3.0f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.XRModule.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.Collections.LowLevel.ILSupport">
+     <HintPath>D:\development\unity\projects\Ships\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
      <HintPath>D:\development\unity\projects\Ships\Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
@@ -636,33 +647,57 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.Timeline.Player.csproj">
-      <Project>{2633e926-5b3c-bb19-aa07-f3b460ff67a7}</Project>
-      <Name>Unity.Timeline.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{1e6d5d45-333c-b8ba-690d-41526b40c121}</Project>
-      <Name>UnityEngine.UI.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFab.Player.csproj">
-      <Project>{ae38767a-9ff0-7cc2-fb35-6bd796685214}</Project>
-      <Name>PlayFab.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
-      <Project>{20889519-0cf3-9cb6-7bfb-df77623e3415}</Project>
-      <Name>Unity.TextMeshPro.Player</Name>
+    <ProjectReference Include="Unity.Burst.Player.csproj">
+      <Project>{dbffaaac-fede-ea8f-418e-a4293764441c}</Project>
+      <Name>Unity.Burst.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Core.Player.csproj">
       <Project>{71119401-44a0-2e4a-c74c-e36c4d23a86a}</Project>
       <Name>Unity.VisualScripting.Core.Player</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
-      <Project>{1f977485-5fab-311f-6c97-20bdcddcee92}</Project>
-      <Name>Unity.VisualScripting.State.Player</Name>
+    <ProjectReference Include="Unity.Networking.Transport.Player.csproj">
+      <Project>{c3c4aeb9-bb4e-3f57-bb6f-eda4ec92f361}</Project>
+      <Name>Unity.Networking.Transport.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.Player.csproj">
+      <Project>{1e6d5d45-333c-b8ba-690d-41526b40c121}</Project>
+      <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Flow.Player.csproj">
       <Project>{02669fd3-feda-0e2e-d1c0-91e189dcbcfd}</Project>
       <Name>Unity.VisualScripting.Flow.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Netcode.Components.Player.csproj">
+      <Project>{87297ab9-0783-39f5-9203-1de2fc538005}</Project>
+      <Name>Unity.Netcode.Components.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Player.csproj">
+      <Project>{2633e926-5b3c-bb19-aa07-f3b460ff67a7}</Project>
+      <Name>Unity.Timeline.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFab.Player.csproj">
+      <Project>{ae38767a-9ff0-7cc2-fb35-6bd796685214}</Project>
+      <Name>PlayFab.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Collections.Player.csproj">
+      <Project>{8d79a2e3-30e2-937f-34d6-608ad05bf76a}</Project>
+      <Name>Unity.Collections.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Netcode.Runtime.Player.csproj">
+      <Project>{2dc8fba0-50dd-c98a-03cf-ee1fc85f2436}</Project>
+      <Name>Unity.Netcode.Runtime.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Mathematics.Player.csproj">
+      <Project>{34a9a3b6-3556-744e-f092-807c33da9b94}</Project>
+      <Name>Unity.Mathematics.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
+      <Project>{20889519-0cf3-9cb6-7bfb-df77623e3415}</Project>
+      <Name>Unity.TextMeshPro.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VisualScripting.State.Player.csproj">
+      <Project>{1f977485-5fab-311f-6c97-20bdcddcee92}</Project>
+      <Name>Unity.VisualScripting.State.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
