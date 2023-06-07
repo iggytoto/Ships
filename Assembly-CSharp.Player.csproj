@@ -47,9 +47,13 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayFabAuthService.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\IServerMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\IBulletController.cs" />
      <Compile Include="Assets\Scripts\Scenes\LobbyStartup\NetworkFixPrefabListController.cs" />
+     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\MatchType.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabMatchMakingService.cs" />
+     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\PlayFabServerMatchMakingService\PlayFabServerMatchMakingService.cs" />
+     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\MatchInstance.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\Projection.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Utils\RpcTest.cs" />
@@ -61,6 +65,7 @@
      <Compile Include="Assets\Scripts\Services\Cannon\BulletController.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingType.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingStatus.cs" />
+     <Compile Include="Assets\Scripts\Services\Auth\ConnectionState.cs" />
      <Compile Include="Assets\Scripts\Services\GameService\GameServiceController.cs" />
      <Compile Include="Assets\Scripts\Utils\AxisVisualizer.cs" />
      <Compile Include="Assets\Scripts\Services\Character\PlayerController.cs" />
@@ -68,6 +73,7 @@
      <Compile Include="Assets\Scripts\Services\Network\Movement\TransformState.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainMenu\Ui\MainMenuSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
+     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\MatchInstanceStatus.cs" />
      <Compile Include="Assets\Scripts\Services\Network\Movement\NetworkMovementComponent.cs" />
      <Compile Include="Assets\Scripts\Services\Network\NetworkSimpleGui.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />

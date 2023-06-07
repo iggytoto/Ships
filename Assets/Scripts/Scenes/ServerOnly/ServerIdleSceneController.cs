@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
@@ -15,6 +13,7 @@ public class ServerIdleSceneController : MonoBehaviour
     [SerializeField] public string port = "7777";
     [SerializeField] public float updateInterval = 5;
     private float _updateTime;
+    private MatchInstance _matchInstance;
 
 #if DEDICATED
 
@@ -57,39 +56,31 @@ public class ServerIdleSceneController : MonoBehaviour
 
     private void ProcessEvent()
     {
-        // if (_eventInstance == null)
-        // {
-        //     _eventsService.ApplyAsServer(
-        //         host,
-        //         port,
-        //         ei => _eventInstance = ei,
-        //         errorMessage => Debug.LogError(errorMessage));
-        // }
-        // else
-        // {
-        //     switch (_eventInstance.eventType)
-        //     {
-        //         case EventType.PhoenixRaid:
-        //             SceneManager.LoadScene(SceneConstants.PhoenixRaidSceneName);
-        //             break;
-        //         case EventType.TrainingMatch3x3:
-        //             SceneManager.LoadScene(SceneConstants.TrainingYardSceneName);
-        //             break;
-        //         default:
-        //             throw new ArgumentOutOfRangeException();
-        //     }
-        // }
+        if (_matchInstance == null)
+        {
+            _serverMatchMakingService.ApplyAsServer(
+                host,
+                port,
+                mi => _matchInstance = mi,
+                Debug.LogError);
+        }
+        else
+        {
+            switch (_matchInstance.type)
+            {
+                case MatchType.Duel:
+                    SceneManager.LoadScene(SceneConstants.DuelBattleSceneName);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 
     private void ProcessLogin()
     {
         Debug.Log($"Trying to login with credentials: {username}:{password}");
-        _authService.Login(username, password, _ => ProcessEvent(), OnLoginError);
-    }
-
-    private static void OnLoginError(string obj)
-    {
-        Debug.LogError("Failed to login as server:" + obj);
+        _authService.Login(username, password, _ => ProcessEvent(), Debug.LogError);
     }
 
 #endif
