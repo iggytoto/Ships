@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ServerIdleSceneController : MonoBehaviour
 {
     private IAuthService _authService;
-    private IServerMatchMakingService _serverMatchMakingService;
+    private IMatchMakingService _serverMatchMakingService;
     [SerializeField] public string username = "server";
     [SerializeField] public string password = "password";
     [SerializeField] public string host = "127.0.0.1";
@@ -16,7 +16,6 @@ public class ServerIdleSceneController : MonoBehaviour
     private MatchInstance _matchInstance;
 
 #if DEDICATED
-
     private void Start()
     {
         var gs = FindObjectOfType<GameServiceController>();
