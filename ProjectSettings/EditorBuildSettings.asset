@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/EcsSandbox/SandboxMenu.unity
+    guid: 6d751bd515d4d894992a2bbccb58ffdd
   - enabled: 0
     path: Assets/Scenes/LobbyStartup.unity
     guid: 79ea227fdae9e4c4da6f22abba0568f4
@@ -20,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EcsSandbox/Sandbox.unity
     guid: 96e08e65e1fa3254baab9cc179040683
+  - enabled: 1
+    path: Assets/Scenes/EcsSandbox/SandboxTemp.unity
+    guid: 642ab034e930ca3459c975ea9b896193
   m_configObjects: {}
