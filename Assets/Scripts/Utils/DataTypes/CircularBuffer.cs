@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Utils.DataTypes
 {
+    
     public class CircularBuffer<TKey, TValue> 
         where TKey : struct, IConvertible 
         where TValue : class
