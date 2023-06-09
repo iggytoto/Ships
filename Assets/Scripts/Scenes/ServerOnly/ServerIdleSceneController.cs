@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Unity.Netcode;
 using UnityEngine.SceneManagement;
 
 public class ServerIdleSceneController : MonoBehaviour

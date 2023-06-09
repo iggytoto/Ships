@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScenes/DuelBattle.unity
     guid: 9f844be64d63533489ff7db2ee33b812
+  - enabled: 1
+    path: Assets/Scenes/EcsSandbox/Sandbox.unity
+    guid: 96e08e65e1fa3254baab9cc179040683
   m_configObjects: {}
