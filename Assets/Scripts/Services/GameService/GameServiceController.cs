@@ -4,7 +4,6 @@ public class GameServiceController : MonoBehaviour
 {
     private IAuthService _authService;
     private IMatchMakingService _matchMakingService;
-    private IServerMatchMakingService _serverMatchMakingService;
 
     private void Awake()
     {
@@ -13,14 +12,22 @@ public class GameServiceController : MonoBehaviour
 
     private void ConfigureGameServices()
     {
-        _authService = gameObject.AddComponent<PlayFabAuthService>();
-        Debug.Log("Auth service initialized:" + _authService);
-        _matchMakingService = gameObject.AddComponent<PlayFabMatchMakingService>();
-        Debug.Log("Match making service initialized:" + _matchMakingService);
-#if DEDICATED
-        _serverMatchMakingService = gameObject.AddComponent<PlayFabServerMatchMakingService>();
-        Debug.Log("Serve match making service initialized:" + _serverMatchMakingService);
-#endif
+        _authService = InitAuthService();
+        _matchMakingService = InitMatchMakingService();
+    }
+
+    private IMatchMakingService InitMatchMakingService()
+    {
+        var service = gameObject.AddComponent<MatchMakingService>();
+        service.Initialize("127.0.0.1", "8080");
+        return service;
+    }
+
+    private IAuthService InitAuthService()
+    {
+        var service = gameObject.AddComponent<AuthService>();
+        service.Initialize("127.0.0.1", "8080");
+        return service;
     }
 
     public IAuthService GetAuthService()
@@ -32,11 +39,4 @@ public class GameServiceController : MonoBehaviour
     {
         return _matchMakingService;
     }
-
-#if DEDICATED
-    public IServerMatchMakingService GetServerMatchMakingService()
-    {
-        return _serverMatchMakingService;
-    }
-#endif
 }

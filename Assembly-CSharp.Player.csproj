@@ -45,22 +45,20 @@
     <Analyzer Include="D:\development\unity\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Services\Auth\PlayFabAuthService\PlayFabAuthService.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchInstance.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\IAuthService.cs" />
-     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\IServerMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\IBulletController.cs" />
+     <Compile Include="Assets\Scripts\Services\Auth\VadimichiAuthService\AuthService.cs" />
      <Compile Include="Assets\Scripts\Scenes\LobbyStartup\NetworkFixPrefabListController.cs" />
-     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\MatchType.cs" />
-     <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabMatchMakingService.cs" />
-     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\PlayFabServerMatchMakingService\PlayFabServerMatchMakingService.cs" />
-     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\MatchInstance.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchInstanceStatus.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\MatchType.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\Projection.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\IMatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Utils\RpcTest.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\CannonController.cs" />
      <Compile Include="Assets\Scripts\Utils\FreeCam.cs" />
-     <Compile Include="Assets\Scripts\Services\MatchMaking\PlayFabMatchMakingService\PlayFabQueueNames.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingResult.cs" />
+     <Compile Include="Assets\Scripts\Services\MatchMaking\VadimichiMatchMakingService\MatchMakingService.cs" />
      <Compile Include="Assets\Scripts\Scenes\ServerOnly\ServerIdleSceneController.cs" />
      <Compile Include="Assets\Scripts\Services\Cannon\BulletController.cs" />
      <Compile Include="Assets\Scripts\Services\MatchMaking\MatchMakingType.cs" />
@@ -73,7 +71,6 @@
      <Compile Include="Assets\Scripts\Services\Network\Movement\TransformState.cs" />
      <Compile Include="Assets\Scripts\Scenes\MainMenu\Ui\MainMenuSceneUiController.cs" />
      <Compile Include="Assets\Scripts\Services\Auth\AuthData.cs" />
-     <Compile Include="Assets\Scripts\Services\ServerMatchMaking\MatchInstanceStatus.cs" />
      <Compile Include="Assets\Scripts\Services\Network\Movement\NetworkMovementComponent.cs" />
      <Compile Include="Assets\Scripts\Services\Network\NetworkSimpleGui.cs" />
      <Compile Include="Assets\Scenes\SceneConstants.cs" />
@@ -681,10 +678,6 @@
     <ProjectReference Include="Unity.Timeline.Player.csproj">
       <Project>{2633e926-5b3c-bb19-aa07-f3b460ff67a7}</Project>
       <Name>Unity.Timeline.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFab.Player.csproj">
-      <Project>{ae38767a-9ff0-7cc2-fb35-6bd796685214}</Project>
-      <Name>PlayFab.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Collections.Player.csproj">
       <Project>{8d79a2e3-30e2-937f-34d6-608ad05bf76a}</Project>
