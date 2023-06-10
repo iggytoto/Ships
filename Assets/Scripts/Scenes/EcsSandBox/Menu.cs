@@ -1,8 +1,6 @@
 ﻿using System;
-using JetBrains.Annotations;
 using TMPro;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.NetCode;
 using Unity.Networking.Transport;
 using UnityEngine;
@@ -20,19 +18,19 @@ namespace Scenes.EcsSandBox
 
         public void Start()
         {
-            ClientServerButton.gameObject.SetActive(Services.Ecs.ClientServerBootstrap.RequestedPlayType == Services.Ecs.ClientServerBootstrap.PlayType.ClientAndServer);
+            ClientServerButton.gameObject.SetActive(ClientServerBootstrap.RequestedPlayType == ClientServerBootstrap.PlayType.ClientAndServer);
         }
 
         public void StartClientServer(string sceneName)
         {
-            if (Services.Ecs.ClientServerBootstrap.RequestedPlayType != Services.Ecs.ClientServerBootstrap.PlayType.ClientAndServer)
+            if (ClientServerBootstrap.RequestedPlayType != ClientServerBootstrap.PlayType.ClientAndServer)
             {
-                Debug.LogError($"Creating client/server worlds is not allowed if playmode is set to {Services.Ecs.ClientServerBootstrap.RequestedPlayType}");
+                Debug.LogError($"Creating client/server worlds is not allowed if playmode is set to {ClientServerBootstrap.RequestedPlayType}");
                 return;
             }
 
-            var server = Services.Ecs.ClientServerBootstrap.CreateServerWorld("ServerWorld");
-            var client = Services.Ecs.ClientServerBootstrap.CreateClientWorld("ClientWorld");
+            var server = ClientServerBootstrap.CreateServerWorld("ServerWorld");
+            var client = ClientServerBootstrap.CreateClientWorld("ClientWorld");
 
             SceneManager.LoadScene(GetLoadingTempSceneName());
 
@@ -76,7 +74,8 @@ namespace Scenes.EcsSandBox
 
         public void ConnectToServer()
         {
-            var client = Services.Ecs.ClientServerBootstrap.CreateClientWorld("ClientWorld");
+            Debug.LogError("Try connect to server..");
+            var client = ClientServerBootstrap.CreateClientWorld("ClientWorld");
             SceneManager.LoadScene(GetLoadingTempSceneName());
             DestroyLocalSimulationWorld();
             
@@ -85,6 +84,8 @@ namespace Scenes.EcsSandBox
             SceneManager.LoadSceneAsync(GetLoadingSceneName(), LoadSceneMode.Additive);
 
             var addressPort = ParseAddressPort(Address.text);
+            
+            Debug.LogError("I will connect to " + addressPort.address + " : " + addressPort.port);
             var ep = NetworkEndpoint.Parse(addressPort.address, addressPort.port);
             {
                 using var drvQuery = client.EntityManager.CreateEntityQuery(ComponentType.ReadWrite<NetworkStreamDriver>());

@@ -20,7 +20,7 @@ namespace Services.Ecs.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            Debug.Log("CREATE: client system create");
+            Debug.LogError("CREATE: client system create");
             state.RequireForUpdate<NetCubeSpawner>();
             var builder = new EntityQueryBuilder(Allocator.Temp)
                 .WithAll<NetworkId>()
@@ -56,6 +56,7 @@ namespace Services.Ecs.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            
             Debug.Log("CREATE: server system create");
             state.RequireForUpdate<NetCubeSpawner>();
             var builder = new EntityQueryBuilder(Allocator.Temp)
