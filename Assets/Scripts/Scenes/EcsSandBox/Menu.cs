@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using TMPro;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.NetCode;
@@ -14,24 +15,24 @@ namespace Scenes.EcsSandBox
     {
         const ushort k_NetworkPort = 7979;
 
-        public InputField Address;
+        public TMP_InputField Address;
         public Button ClientServerButton;
 
         public void Start()
         {
-            ClientServerButton.gameObject.SetActive(ClientServerBootstrap.RequestedPlayType == ClientServerBootstrap.PlayType.ClientAndServer);
+            ClientServerButton.gameObject.SetActive(Services.Ecs.ClientServerBootstrap.RequestedPlayType == Services.Ecs.ClientServerBootstrap.PlayType.ClientAndServer);
         }
 
         public void StartClientServer(string sceneName)
         {
-            if (ClientServerBootstrap.RequestedPlayType != ClientServerBootstrap.PlayType.ClientAndServer)
+            if (Services.Ecs.ClientServerBootstrap.RequestedPlayType != Services.Ecs.ClientServerBootstrap.PlayType.ClientAndServer)
             {
-                Debug.LogError($"Creating client/server worlds is not allowed if playmode is set to {ClientServerBootstrap.RequestedPlayType}");
+                Debug.LogError($"Creating client/server worlds is not allowed if playmode is set to {Services.Ecs.ClientServerBootstrap.RequestedPlayType}");
                 return;
             }
 
-            var server = ClientServerBootstrap.CreateServerWorld("ServerWorld");
-            var client = ClientServerBootstrap.CreateClientWorld("ClientWorld");
+            var server = Services.Ecs.ClientServerBootstrap.CreateServerWorld("ServerWorld");
+            var client = Services.Ecs.ClientServerBootstrap.CreateClientWorld("ClientWorld");
 
             SceneManager.LoadScene(GetLoadingTempSceneName());
 
@@ -75,7 +76,7 @@ namespace Scenes.EcsSandBox
 
         public void ConnectToServer()
         {
-            var client = ClientServerBootstrap.CreateClientWorld("ClientWorld");
+            var client = Services.Ecs.ClientServerBootstrap.CreateClientWorld("ClientWorld");
             SceneManager.LoadScene(GetLoadingTempSceneName());
             DestroyLocalSimulationWorld();
             

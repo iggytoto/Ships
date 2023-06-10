@@ -7,6 +7,7 @@ using Unity.Entities;
 using Unity.NetCode;
 using Unity.Networking.Transport;
 using Unity.Scenes;
+using UnityEngine;
 
 namespace Services.Ecs
 {
@@ -21,7 +22,7 @@ namespace Services.Ecs
     /// when running the server on some cloud provider) via <see cref="DefaultListenAddress"/>.
     /// </summary>
     [UnityEngine.Scripting.Preserve]
-    public class ClientServerBootstrap : ICustomBootstrap
+    public class ClientServerBootstrap : Unity.NetCode.ClientServerBootstrap
     {
         /// <summary>
         /// The maximum number of thin clients that can be created in the editor.
@@ -55,6 +56,7 @@ namespace Services.Ecs
         /// <returns>A new world instance.</returns>
         public static World CreateLocalWorld(string defaultWorldName)
         {
+            Debug.Log("CreateLocalWorld");
             // The default world must be created before generating the system list in order to have a valid TypeManager instance.
             // The TypeManage is initialised the first time we create a world.
             var world = new World(defaultWorldName, WorldFlags.Game);
@@ -71,6 +73,7 @@ namespace Services.Ecs
 #if UNITY_DOTSRUNTIME
         private static void CreateTickWorld()
         {
+            Debug.Log("CreateTickWorld");
             if (World.DefaultGameObjectInjectionWorld == null)
             {
                 World.DefaultGameObjectInjectionWorld = new World("NetcodeTickWorld", WorldFlags.Game);
@@ -90,6 +93,7 @@ namespace Services.Ecs
 #if !UNITY_CLIENT
         private static void AppendWorldToServerTickWorld(World childWorld)
         {
+            Debug.Log("AppendWorldToServerTickWorld");
             CreateTickWorld();
             var initializationTickSystem = World.DefaultGameObjectInjectionWorld?.GetExistingSystemManaged<TickServerInitializationSystem>();
             var simulationTickSystem = World.DefaultGameObjectInjectionWorld?.GetExistingSystemManaged<TickServerSimulationSystem>();
@@ -110,6 +114,7 @@ namespace Services.Ecs
 #if !UNITY_SERVER
         private static void AppendWorldToClientTickWorld(World childWorld)
         {
+            Debug.Log("AppendWorldToClientTickWorld");
             CreateTickWorld();
             var initializationTickSystem = World.DefaultGameObjectInjectionWorld?.GetExistingSystemManaged<TickClientInitializationSystem>();
             var simulationTickSystem = World.DefaultGameObjectInjectionWorld?.GetExistingSystemManaged<TickClientSimulationSystem>();
@@ -143,6 +148,7 @@ namespace Services.Ecs
         /// <returns></returns>
         public virtual bool Initialize(string defaultWorldName)
         {
+            Debug.Log("Initialize" + defaultWorldName);
             CreateDefaultClientServerWorlds();
             return true;
         }
@@ -154,6 +160,7 @@ namespace Services.Ecs
         /// </summary>
         protected virtual void CreateDefaultClientServerWorlds()
         {
+            Debug.Log("CreateDefaultClientServerWorlds");
             var requestedPlayType = RequestedPlayType;
             if (requestedPlayType != PlayType.Client)
             {
@@ -182,6 +189,7 @@ namespace Services.Ecs
         /// <returns></returns>
         public static World CreateThinClientWorld()
         {
+            Debug.Log("CreateThinClientWorld");
 #if UNITY_SERVER && !UNITY_EDITOR
             throw new NotImplementedException();
 #else
@@ -208,6 +216,8 @@ namespace Services.Ecs
         /// <returns></returns>
         public static World CreateClientWorld(string name)
         {
+            Debug.LogError("Open console");
+            Debug.Log("CreateClientWorld" + name);
 #if UNITY_SERVER && !UNITY_EDITOR
             throw new NotImplementedException();
 #else
@@ -217,8 +227,10 @@ namespace Services.Ecs
             DefaultWorldInitialization.AddSystemsToRootLevelSystemGroups(world, systems);
 
 #if UNITY_DOTSRUNTIME
+            Debug.Log("UNITY_DOTSRUNTIME");
             AppendWorldToClientTickWorld(world);
 #else
+            Debug.Log("NOT UNITY_DOTSRUNTIME");
             ScriptBehaviourUpdateOrder.AppendWorldToCurrentPlayerLoop(world);
 #endif
 
@@ -231,6 +243,7 @@ namespace Services.Ecs
 
         internal static bool TryFindAutoConnectEndPoint(out NetworkEndpoint autoConnectEp)
         {
+            Debug.Log("TryFindAutoConnectEndPoint");
             autoConnectEp = default;
 
             switch (RequestedPlayType)
@@ -281,6 +294,7 @@ namespace Services.Ecs
         /// <returns>True if user-code has specified both a <see cref="AutoConnectPort"/> and <see cref="DefaultConnectAddress"/>.</returns>
         internal static bool HasDefaultAddressAndPortSet(out NetworkEndpoint autoConnectEp)
         {
+            Debug.Log("HasDefaultAddressAndPortSet");
             if (AutoConnectPort != 0 && DefaultConnectAddress != NetworkEndpoint.AnyIpv4)
             {
                 autoConnectEp = DefaultConnectAddress.WithPort(AutoConnectPort);
@@ -300,6 +314,7 @@ namespace Services.Ecs
         /// <returns></returns>
         public static World CreateServerWorld(string name)
         {
+            Debug.Log("CreateServerWorld" + name);
 #if UNITY_CLIENT && !UNITY_SERVER && !UNITY_EDITOR
             throw new NotImplementedException();
 #else
